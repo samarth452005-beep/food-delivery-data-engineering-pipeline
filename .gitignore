@@ -1,0 +1,35 @@
+# Secrets and credentials
+.env
+.env.*
+!.env.example
+*credentials*.json
+*service-account*.json
+.aws/
+.kaggle/
+
+# Local datasets and generated files
+*.csv
+*.parquet
+*.pkl
+*.duckdb
+*.duckdb.wal
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Logs and temporary files
+logs/*
+!logs/.gitkeep
+.ipynb_checkpoints/
+
+# Streamlit local configuration
+.streamlit/secrets.toml
+# Dashboard backups
+dashboard/*_backup_*.py
+# Logs and editor files
+*.log
+*.tmp
+.vscode/
