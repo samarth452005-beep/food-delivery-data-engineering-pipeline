@@ -4,6 +4,15 @@ An end-to-end portfolio project that transforms food delivery
 order data into analytics-ready datasets, validates data quality,
 and presents business insights through interactive dashboards.
 
+## 🚀 Live Demo
+
+**[Open Food Delivery Analytics Dashboard](https://food-delivery-data-engineering-pipeline-fc5bszgrowqw4cotdmghtz.streamlit.app/)**
+
+Explore interactive KPIs, city filters, daily order trends, cancellation and refund rates, and delivery performance.
+
+> **Note:** The publicly deployed dashboard uses synthetic demonstration data. The full data engineering pipeline and cloud components are documented separately in this repository.
+
+
 ## Project Goals
 
 - Process a large historical food delivery dataset.
