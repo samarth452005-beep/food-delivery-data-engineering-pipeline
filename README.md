@@ -4,7 +4,7 @@ An end-to-end portfolio project that transforms food delivery
 order data into analytics-ready datasets, validates data quality,
 and presents business insights through interactive dashboards.
 
-## 🚀 Live Demo
+## Live Demo
 
 **[Open Food Delivery Analytics Dashboard](https://food-delivery-data-engineering-pipeline-fc5bszgrowqw4cotdmghtz.streamlit.app/)**
 
