@@ -121,11 +121,14 @@ def load_analytics(project_id, start_date, end_date):
         ],
         maximum_bytes_billed=5_000_000_000,
     )
+   
     return client.query(
-    query, job_config=job_config
-).to_dataframe(
-    create_bqstorage_client=False
-)
+        query,
+        job_config=config
+    ).to_dataframe(
+        create_bqstorage_client=False
+    )
+
 
     
 
