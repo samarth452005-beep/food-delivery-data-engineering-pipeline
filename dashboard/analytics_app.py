@@ -121,7 +121,7 @@ def load_analytics(project_id, start_date, end_date):
 
     return client.query(
         query, job_config=config
-    ).to_dataframe()
+    ).to_dataframe(create_bqstorage_client=False)
 
 
 try:
