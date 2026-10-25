@@ -1,0 +1,27 @@
+﻿services:
+  airflow:
+    build:
+      context: .
+      dockerfile: airflow/Dockerfile
+    image: food-delivery-airflow:3.3.1
+    container_name: food-delivery-airflow
+    command: standalone
+    ports:
+      - "8080:8080"
+    environment:
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__CORE__PARALLELISM: "1"
+      AIRFLOW__CORE__MAX_ACTIVE_TASKS_PER_DAG: "1"
+      _AIRFLOW_WWW_USER_USERNAME: airflow
+      _AIRFLOW_WWW_USER_PASSWORD: airflow
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/config:/opt/airflow/config
+      - ./airflow/plugins:/opt/airflow/plugins
+      - ./src:/opt/food-delivery/src:ro
+      - ./data/airflow_test_incoming:/opt/food-delivery/test_incoming
+      - ./data/airflow_test:/opt/food-delivery/test_data
+      - ./data/airflow_test/logs:/opt/food-delivery/test_data/logs
+    mem_limit: 3g
+    restart: unless-stopped

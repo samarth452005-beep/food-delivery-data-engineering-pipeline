@@ -33,3 +33,16 @@ dashboard/*_backup_*.py
 *.log
 *.tmp
 .vscode/
+# Local data and pipeline state
+/data/*
+!/data/.gitkeep
+
+# Airflow runtime artifacts
+/airflow/logs/
+/airflow/*.db
+/airflow/*.pid
+
+# Test and temporary outputs
+.pytest_cache/
+.coverage
+htmlcov/
