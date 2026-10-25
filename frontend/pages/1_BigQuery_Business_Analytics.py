@@ -5,6 +5,7 @@ import pandas as pd
 import plotly.express as px
 from google.cloud import bigquery
 from datetime import date
+from google.oauth2 import service_account
 
 PROJECT_ID = "intrepid-charge-511709-t8"
 TABLE_ID = f"{PROJECT_ID}.food_delivery.orders"
@@ -24,13 +25,23 @@ st.caption("Historical business analytics | Google BigQuery")
 
 
 @st.cache_resource
+@st.cache_resource
+@st.cache_resource
 def get_client():
-    # Uses the local Application Default Credentials configured with gcloud.
-    # For deployment, configure credentials securely in the hosting platform.
-    return bigquery.Client(project=PROJECT_ID)
+    try:
+        service_account_info = dict(st.secrets["gcp_service_account"])
+    except (KeyError, FileNotFoundError):
+        # Local development using gcloud credentials
+        return bigquery.Client(project=PROJECT_ID)
 
+    credentials = service_account.Credentials.from_service_account_info(
+        service_account_info
+    )
 
-@st.cache_data(ttl=3600, show_spinner=False)
+    return bigquery.Client(
+        project=PROJECT_ID,
+        credentials=credentials,
+    )
 def load_cities(project_id):
     client = get_client()
     query = f"""
