@@ -2,8 +2,12 @@
 import requests
 import streamlit as st
 import pandas as pd
+import os
 
-API_URL = "http://127.0.0.1:8000"
+API_URL = os.getenv(
+    "API_URL",
+    "https://food-delivery-analytics-api.onrender.com",
+).rstrip("/")
 
 st.set_page_config(
     page_title="Food Delivery Analytics",
