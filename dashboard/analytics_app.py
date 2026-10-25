@@ -56,8 +56,10 @@ def load_cities(project_id):
         maximum_bytes_billed=5_000_000_000
     )
     return client.query(
-        query, job_config=job_config
-    ).to_dataframe()["restaurant_city"].tolist()
+    query, job_config=job_config
+).to_dataframe(
+    create_bqstorage_client=False
+)["restaurant_city"].tolist()
 
 
 @st.cache_data(ttl=1800, show_spinner="Loading analytics from BigQuery...")

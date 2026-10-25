@@ -1,5 +1,10 @@
 
 
+from http import client
+
+from xmlrpc import client
+
+from duckdb import query
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -54,8 +59,10 @@ def load_cities(project_id):
         maximum_bytes_billed=5_000_000_000
     )
     return client.query(
-        query, job_config=job_config
-    ).to_dataframe()["restaurant_city"].tolist()
+    query, job_config=job_config
+).to_dataframe(
+    create_bqstorage_client=False
+)["restaurant_city"].tolist()
 
 
 @st.cache_data(ttl=1800, show_spinner="Loading analytics from BigQuery...")
@@ -114,11 +121,13 @@ def load_analytics(project_id, start_date, end_date):
         ],
         maximum_bytes_billed=5_000_000_000,
     )
-
     return client.query(
-        query, job_config=config
-    ).to_dataframe()
+    query, job_config=job_config
+).to_dataframe(
+    create_bqstorage_client=False
+)
 
+    
 
 try:
     cities = load_cities(PROJECT_ID)
